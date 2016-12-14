@@ -10,8 +10,8 @@ public class FilmLoader extends BaseLoad{
 		
 	}
 
-	public FilmLoader(String url, String fileName) throws IOException, InterruptedException {
-		super(url, fileName);
+	public FilmLoader(String url) throws IOException, InterruptedException {
+		super(url);
 	}
 
 	@Override

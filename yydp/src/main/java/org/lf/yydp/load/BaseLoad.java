@@ -26,23 +26,22 @@ public abstract class BaseLoad {
 		
 	}
 	
-	public BaseLoad(String url, String fileName) throws IOException, InterruptedException{
+	public BaseLoad(String url) throws IOException, InterruptedException{
 		try {
 			this.url = new URL(url);
 		} catch (MalformedURLException e) {
 			logger.info(url+" error!");
 		}
-		
-		parseFile = new File(getPathName(tmpFile)+File.separator+fileName);
+		parseFile = new File(tmpFile, new File(this.url.getFile()).getName());
 		if(parseFile.exists()){
 			logger.info(parseFile.getAbsoluteFile()+" is extist!");
 		}else{
-			downLoad(this.url, fileName);
+			downLoad(this.url);
 		}
 	}
 	
 	@SuppressWarnings("static-access")
-	private File downLoad(URL url, String fileName) throws IOException, InterruptedException{
+	private File downLoad(URL url) throws IOException, InterruptedException{
 		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 		// 沉睡500ms后开始下载
 		try {
@@ -63,7 +62,7 @@ public abstract class BaseLoad {
 			tmpFile.mkdirs();
 		}
 		
-		parseFile = new File(getPathName(tmpFile)+File.separator+fileName);
+		
 		FileOutputStream fos = new FileOutputStream(parseFile);
 		fos.write(data);
 		logger.info("File downLoad success: "+parseFile.getAbsolutePath());
