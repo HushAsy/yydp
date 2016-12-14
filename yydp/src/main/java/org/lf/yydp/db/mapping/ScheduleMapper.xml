@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.lf.yydp.db.dao.ScheduleMapper">
+  <resultMap id="BaseResultMap" type="org.lf.yydp.db.pojo.Schedule">
+    <id column="Id" jdbcType="INTEGER" property="id" />
+    <result column="f_id" jdbcType="INTEGER" property="fId" />
+    <result column="sche_time" jdbcType="TIMESTAMP" property="scheTime" />
+    <result column="money" jdbcType="DECIMAL" property="money" />
+    <result column="day" jdbcType="CHAR" property="day" />
+    <result column="status" jdbcType="CHAR" property="status" />
+    <result column="isStart" jdbcType="CHAR" property="isstart" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    Id, f_id, sche_time, money, day, status, isStart
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from schedule
+    where Id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from schedule
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="org.lf.yydp.db.pojo.Schedule">
+    insert into schedule (Id, f_id, sche_time, 
+      money, day, status, isStart
+      )
+    values (#{id,jdbcType=INTEGER}, #{fId,jdbcType=INTEGER}, #{scheTime,jdbcType=TIMESTAMP}, 
+      #{money,jdbcType=DECIMAL}, #{day,jdbcType=CHAR}, #{status,jdbcType=CHAR}, #{isstart,jdbcType=CHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="org.lf.yydp.db.pojo.Schedule">
+    insert into schedule
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        Id,
+      </if>
+      <if test="fId != null">
+        f_id,
+      </if>
+      <if test="scheTime != null">
+        sche_time,
+      </if>
+      <if test="money != null">
+        money,
+      </if>
+      <if test="day != null">
+        day,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="isstart != null">
+        isStart,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="fId != null">
+        #{fId,jdbcType=INTEGER},
+      </if>
+      <if test="scheTime != null">
+        #{scheTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="money != null">
+        #{money,jdbcType=DECIMAL},
+      </if>
+      <if test="day != null">
+        #{day,jdbcType=CHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=CHAR},
+      </if>
+      <if test="isstart != null">
+        #{isstart,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.lf.yydp.db.pojo.Schedule">
+    update schedule
+    <set>
+      <if test="fId != null">
+        f_id = #{fId,jdbcType=INTEGER},
+      </if>
+      <if test="scheTime != null">
+        sche_time = #{scheTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="money != null">
+        money = #{money,jdbcType=DECIMAL},
+      </if>
+      <if test="day != null">
+        day = #{day,jdbcType=CHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=CHAR},
+      </if>
+      <if test="isstart != null">
+        isStart = #{isstart,jdbcType=CHAR},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.lf.yydp.db.pojo.Schedule">
+    update schedule
+    set f_id = #{fId,jdbcType=INTEGER},
+      sche_time = #{scheTime,jdbcType=TIMESTAMP},
+      money = #{money,jdbcType=DECIMAL},
+      day = #{day,jdbcType=CHAR},
+      status = #{status,jdbcType=CHAR},
+      isStart = #{isstart,jdbcType=CHAR}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
