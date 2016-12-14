@@ -1,4 +1,4 @@
-package org.lf.yydp.etl.load;
+package org.lf.yydp.load;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -21,7 +21,6 @@ public abstract class BaseLoad {
 	private static File tmpFile = new File("temp");
 	protected File parseFile;
 	private Logger logger = Logger.getLogger(BaseLoad.class);
-	private File fileSave;
 	
 	public BaseLoad(){
 		
@@ -34,9 +33,9 @@ public abstract class BaseLoad {
 			logger.info(url+" error!");
 		}
 		
-		fileSave = new File(getPathName(tmpFile)+File.separator+fileName);
-		if(fileSave.exists()){
-			logger.info(fileSave.getAbsoluteFile()+" is extist!");
+		parseFile = new File(getPathName(tmpFile)+File.separator+fileName);
+		if(parseFile.exists()){
+			logger.info(parseFile.getAbsoluteFile()+" is extist!");
 		}else{
 			downLoad(this.url, fileName);
 		}
@@ -64,10 +63,10 @@ public abstract class BaseLoad {
 			tmpFile.mkdirs();
 		}
 		
-		fileSave = new File(getPathName(tmpFile)+File.separator+fileName);
-		FileOutputStream fos = new FileOutputStream(fileSave);
+		parseFile = new File(getPathName(tmpFile)+File.separator+fileName);
+		FileOutputStream fos = new FileOutputStream(parseFile);
 		fos.write(data);
-		logger.info("File downLoad success: "+fileSave.getAbsolutePath());
+		logger.info("File downLoad success: "+parseFile.getAbsolutePath());
 		
 		/**
 		 * 关闭输入、输出流
@@ -75,7 +74,7 @@ public abstract class BaseLoad {
 		fos.close();
 		ins.close();
 		
-		return fileSave;
+		return parseFile;
 	}
 	
 	/**

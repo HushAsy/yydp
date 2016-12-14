@@ -1,4 +1,4 @@
-package org.lf.yydp.etl.load;
+package org.lf.yydp.load;
 
 import java.io.IOException;
 
