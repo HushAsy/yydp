@@ -9,6 +9,8 @@ public class Film {
 
     private String status;
 
+    private String localimgpath;
+
     public Integer getId() {
         return id;
     }
@@ -39,5 +41,13 @@ public class Film {
 
     public void setStatus(String status) {
         this.status = status == null ? null : status.trim();
+    }
+
+    public String getLocalimgpath() {
+        return localimgpath;
+    }
+
+    public void setLocalimgpath(String localimgpath) {
+        this.localimgpath = localimgpath == null ? null : localimgpath.trim();
     }
 }

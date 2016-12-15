@@ -6,9 +6,10 @@
     <result column="href" jdbcType="VARCHAR" property="href" />
     <result column="img" jdbcType="VARCHAR" property="img" />
     <result column="status" jdbcType="CHAR" property="status" />
+    <result column="localImgPath" jdbcType="VARCHAR" property="localimgpath" />
   </resultMap>
   <sql id="Base_Column_List">
-    Id, href, img, status
+    Id, href, img, status, localImgPath
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -22,9 +23,9 @@
   </delete>
   <insert id="insert" parameterType="org.lf.yydp.db.pojo.Film">
     insert into film (Id, href, img, 
-      status)
+      status, localImgPath)
     values (#{id,jdbcType=INTEGER}, #{href,jdbcType=VARCHAR}, #{img,jdbcType=VARCHAR}, 
-      #{status,jdbcType=CHAR})
+      #{status,jdbcType=CHAR}, #{localimgpath,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="org.lf.yydp.db.pojo.Film">
     insert into film
@@ -41,6 +42,9 @@
       <if test="status != null">
         status,
       </if>
+      <if test="localimgpath != null">
+        localImgPath,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -54,6 +58,9 @@
       </if>
       <if test="status != null">
         #{status,jdbcType=CHAR},
+      </if>
+      <if test="localimgpath != null">
+        #{localimgpath,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -69,6 +76,9 @@
       <if test="status != null">
         status = #{status,jdbcType=CHAR},
       </if>
+      <if test="localimgpath != null">
+        localImgPath = #{localimgpath,jdbcType=VARCHAR},
+      </if>
     </set>
     where Id = #{id,jdbcType=INTEGER}
   </update>
@@ -76,7 +86,8 @@
     update film
     set href = #{href,jdbcType=VARCHAR},
       img = #{img,jdbcType=VARCHAR},
-      status = #{status,jdbcType=CHAR}
+      status = #{status,jdbcType=CHAR},
+      localImgPath = #{localimgpath,jdbcType=VARCHAR}
     where Id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

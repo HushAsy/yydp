@@ -61,6 +61,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<tr height="25">
 					<td>
 						<a href="javascript:void(0)" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-tip',width:125,size:'large',
+		                    	 	iconAlign:'left'" onclick="refreshCenter('${pageContext.servletContext.contextPath}'+'/center.do')">首页</a>
+					</td>
+				</tr>
+				<tr height="25">
+					<td>
+						<a href="javascript:void(0)" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-tip',width:125,size:'large',
 		                    	 	iconAlign:'left'" onclick="refreshCenter('${pageContext.servletContext.contextPath}'+'/fileQuery.do')">影片查询</a>
 					</td>
 				</tr>

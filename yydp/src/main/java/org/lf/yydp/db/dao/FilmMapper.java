@@ -1,5 +1,9 @@
 package org.lf.yydp.db.dao;
 
+import java.util.List;
+
+import org.apache.ibatis.annotations.ResultMap;
+import org.apache.ibatis.annotations.Select;
 import org.lf.yydp.db.pojo.Film;
 
 public interface FilmMapper {
@@ -14,4 +18,9 @@ public interface FilmMapper {
     int updateByPrimaryKeySelective(Film record);
 
     int updateByPrimaryKey(Film record);
+    
+    @Select("select * from film")
+    @ResultMap("org.lf.yydp.db.dao.FilmMapper.BaseResultMap")
+    List<Film> selectAllFilm();
+    
 }
