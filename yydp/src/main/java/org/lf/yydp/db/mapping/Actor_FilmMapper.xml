@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.lf.yydp.db.dao.Actor_FilmMapper">
+  <resultMap id="BaseResultMap" type="org.lf.yydp.db.pojo.Actor_Film">
+    <id column="Id" jdbcType="INTEGER" property="id" />
+    <result column="actorName" jdbcType="VARCHAR" property="actorname" />
+    <result column="f_id" jdbcType="INTEGER" property="fId" />
+    <result column="role" jdbcType="VARCHAR" property="role" />
+    <result column="picture" jdbcType="VARCHAR" property="picture" />
+    <result column="localpathimg" jdbcType="VARCHAR" property="localpathimg" />
+    <result column="picDownLoadStatus" jdbcType="CHAR" property="picdownloadstatus" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    Id, actorName, f_id, role, picture, localpathimg, picDownLoadStatus
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from actor_film
+    where Id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from actor_film
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="org.lf.yydp.db.pojo.Actor_Film">
+    insert into actor_film (Id, actorName, f_id, 
+      role, picture, localpathimg, 
+      picDownLoadStatus)
+    values (#{id,jdbcType=INTEGER}, #{actorname,jdbcType=VARCHAR}, #{fId,jdbcType=INTEGER}, 
+      #{role,jdbcType=VARCHAR}, #{picture,jdbcType=VARCHAR}, #{localpathimg,jdbcType=VARCHAR}, 
+      #{picdownloadstatus,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="org.lf.yydp.db.pojo.Actor_Film">
+    insert into actor_film
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        Id,
+      </if>
+      <if test="actorname != null">
+        actorName,
+      </if>
+      <if test="fId != null">
+        f_id,
+      </if>
+      <if test="role != null">
+        role,
+      </if>
+      <if test="picture != null">
+        picture,
+      </if>
+      <if test="localpathimg != null">
+        localpathimg,
+      </if>
+      <if test="picdownloadstatus != null">
+        picDownLoadStatus,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="actorname != null">
+        #{actorname,jdbcType=VARCHAR},
+      </if>
+      <if test="fId != null">
+        #{fId,jdbcType=INTEGER},
+      </if>
+      <if test="role != null">
+        #{role,jdbcType=VARCHAR},
+      </if>
+      <if test="picture != null">
+        #{picture,jdbcType=VARCHAR},
+      </if>
+      <if test="localpathimg != null">
+        #{localpathimg,jdbcType=VARCHAR},
+      </if>
+      <if test="picdownloadstatus != null">
+        #{picdownloadstatus,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.lf.yydp.db.pojo.Actor_Film">
+    update actor_film
+    <set>
+      <if test="actorname != null">
+        actorName = #{actorname,jdbcType=VARCHAR},
+      </if>
+      <if test="fId != null">
+        f_id = #{fId,jdbcType=INTEGER},
+      </if>
+      <if test="role != null">
+        role = #{role,jdbcType=VARCHAR},
+      </if>
+      <if test="picture != null">
+        picture = #{picture,jdbcType=VARCHAR},
+      </if>
+      <if test="localpathimg != null">
+        localpathimg = #{localpathimg,jdbcType=VARCHAR},
+      </if>
+      <if test="picdownloadstatus != null">
+        picDownLoadStatus = #{picdownloadstatus,jdbcType=CHAR},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.lf.yydp.db.pojo.Actor_Film">
+    update actor_film
+    set actorName = #{actorname,jdbcType=VARCHAR},
+      f_id = #{fId,jdbcType=INTEGER},
+      role = #{role,jdbcType=VARCHAR},
+      picture = #{picture,jdbcType=VARCHAR},
+      localpathimg = #{localpathimg,jdbcType=VARCHAR},
+      picDownLoadStatus = #{picdownloadstatus,jdbcType=CHAR}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

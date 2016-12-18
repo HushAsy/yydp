@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.lf.yydp.db.dao.FilmInfoMapper">
+  <resultMap id="BaseResultMap" type="org.lf.yydp.db.pojo.FilmInfo">
+    <id column="Id" jdbcType="INTEGER" property="id" />
+    <result column="f_id" jdbcType="INTEGER" property="fId" />
+    <result column="f_name" jdbcType="VARCHAR" property="fName" />
+    <result column="f_type" jdbcType="VARCHAR" property="fType" />
+    <result column="f_duration" jdbcType="VARCHAR" property="fDuration" />
+    <result column="f_ontime" jdbcType="VARCHAR" property="fOntime" />
+    <result column="f_director" jdbcType="VARCHAR" property="fDirector" />
+    <result column="f_country" jdbcType="VARCHAR" property="fCountry" />
+    <result column="f_summary" jdbcType="VARCHAR" property="fSummary" />
+    <result column="f_actor" jdbcType="VARCHAR" property="fActor" />
+    <result column="bigImage" jdbcType="VARCHAR" property="bigimage" />
+    <result column="localbigimage" jdbcType="VARCHAR" property="localbigimage" />
+    <result column="picDownLoadStatus" jdbcType="CHAR" property="picdownloadstatus" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    Id, f_id, f_name, f_type, f_duration, f_ontime, f_director, f_country, f_summary, 
+    f_actor, bigImage, localbigimage, picDownLoadStatus
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from film_info
+    where Id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from film_info
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="org.lf.yydp.db.pojo.FilmInfo">
+    insert into film_info (Id, f_id, f_name, 
+      f_type, f_duration, f_ontime, 
+      f_director, f_country, f_summary, 
+      f_actor, bigImage, localbigimage, 
+      picDownLoadStatus)
+    values (#{id,jdbcType=INTEGER}, #{fId,jdbcType=INTEGER}, #{fName,jdbcType=VARCHAR}, 
+      #{fType,jdbcType=VARCHAR}, #{fDuration,jdbcType=VARCHAR}, #{fOntime,jdbcType=VARCHAR}, 
+      #{fDirector,jdbcType=VARCHAR}, #{fCountry,jdbcType=VARCHAR}, #{fSummary,jdbcType=VARCHAR}, 
+      #{fActor,jdbcType=VARCHAR}, #{bigimage,jdbcType=VARCHAR}, #{localbigimage,jdbcType=VARCHAR}, 
+      #{picdownloadstatus,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="org.lf.yydp.db.pojo.FilmInfo">
+    insert into film_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        Id,
+      </if>
+      <if test="fId != null">
+        f_id,
+      </if>
+      <if test="fName != null">
+        f_name,
+      </if>
+      <if test="fType != null">
+        f_type,
+      </if>
+      <if test="fDuration != null">
+        f_duration,
+      </if>
+      <if test="fOntime != null">
+        f_ontime,
+      </if>
+      <if test="fDirector != null">
+        f_director,
+      </if>
+      <if test="fCountry != null">
+        f_country,
+      </if>
+      <if test="fSummary != null">
+        f_summary,
+      </if>
+      <if test="fActor != null">
+        f_actor,
+      </if>
+      <if test="bigimage != null">
+        bigImage,
+      </if>
+      <if test="localbigimage != null">
+        localbigimage,
+      </if>
+      <if test="picdownloadstatus != null">
+        picDownLoadStatus,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="fId != null">
+        #{fId,jdbcType=INTEGER},
+      </if>
+      <if test="fName != null">
+        #{fName,jdbcType=VARCHAR},
+      </if>
+      <if test="fType != null">
+        #{fType,jdbcType=VARCHAR},
+      </if>
+      <if test="fDuration != null">
+        #{fDuration,jdbcType=VARCHAR},
+      </if>
+      <if test="fOntime != null">
+        #{fOntime,jdbcType=VARCHAR},
+      </if>
+      <if test="fDirector != null">
+        #{fDirector,jdbcType=VARCHAR},
+      </if>
+      <if test="fCountry != null">
+        #{fCountry,jdbcType=VARCHAR},
+      </if>
+      <if test="fSummary != null">
+        #{fSummary,jdbcType=VARCHAR},
+      </if>
+      <if test="fActor != null">
+        #{fActor,jdbcType=VARCHAR},
+      </if>
+      <if test="bigimage != null">
+        #{bigimage,jdbcType=VARCHAR},
+      </if>
+      <if test="localbigimage != null">
+        #{localbigimage,jdbcType=VARCHAR},
+      </if>
+      <if test="picdownloadstatus != null">
+        #{picdownloadstatus,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.lf.yydp.db.pojo.FilmInfo">
+    update film_info
+    <set>
+      <if test="fId != null">
+        f_id = #{fId,jdbcType=INTEGER},
+      </if>
+      <if test="fName != null">
+        f_name = #{fName,jdbcType=VARCHAR},
+      </if>
+      <if test="fType != null">
+        f_type = #{fType,jdbcType=VARCHAR},
+      </if>
+      <if test="fDuration != null">
+        f_duration = #{fDuration,jdbcType=VARCHAR},
+      </if>
+      <if test="fOntime != null">
+        f_ontime = #{fOntime,jdbcType=VARCHAR},
+      </if>
+      <if test="fDirector != null">
+        f_director = #{fDirector,jdbcType=VARCHAR},
+      </if>
+      <if test="fCountry != null">
+        f_country = #{fCountry,jdbcType=VARCHAR},
+      </if>
+      <if test="fSummary != null">
+        f_summary = #{fSummary,jdbcType=VARCHAR},
+      </if>
+      <if test="fActor != null">
+        f_actor = #{fActor,jdbcType=VARCHAR},
+      </if>
+      <if test="bigimage != null">
+        bigImage = #{bigimage,jdbcType=VARCHAR},
+      </if>
+      <if test="localbigimage != null">
+        localbigimage = #{localbigimage,jdbcType=VARCHAR},
+      </if>
+      <if test="picdownloadstatus != null">
+        picDownLoadStatus = #{picdownloadstatus,jdbcType=CHAR},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.lf.yydp.db.pojo.FilmInfo">
+    update film_info
+    set f_id = #{fId,jdbcType=INTEGER},
+      f_name = #{fName,jdbcType=VARCHAR},
+      f_type = #{fType,jdbcType=VARCHAR},
+      f_duration = #{fDuration,jdbcType=VARCHAR},
+      f_ontime = #{fOntime,jdbcType=VARCHAR},
+      f_director = #{fDirector,jdbcType=VARCHAR},
+      f_country = #{fCountry,jdbcType=VARCHAR},
+      f_summary = #{fSummary,jdbcType=VARCHAR},
+      f_actor = #{fActor,jdbcType=VARCHAR},
+      bigImage = #{bigimage,jdbcType=VARCHAR},
+      localbigimage = #{localbigimage,jdbcType=VARCHAR},
+      picDownLoadStatus = #{picdownloadstatus,jdbcType=CHAR}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

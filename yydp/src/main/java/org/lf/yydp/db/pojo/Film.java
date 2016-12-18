@@ -11,6 +11,8 @@ public class Film {
 
     private String localimgpath;
 
+    private String picdownloadstatus;
+
     public Integer getId() {
         return id;
     }
@@ -49,5 +51,13 @@ public class Film {
 
     public void setLocalimgpath(String localimgpath) {
         this.localimgpath = localimgpath == null ? null : localimgpath.trim();
+    }
+
+    public String getPicdownloadstatus() {
+        return picdownloadstatus;
+    }
+
+    public void setPicdownloadstatus(String picdownloadstatus) {
+        this.picdownloadstatus = picdownloadstatus == null ? null : picdownloadstatus.trim();
     }
 }
