@@ -1,7 +1,14 @@
 package org.lf.yydp.db.dao;
 
-import org.lf.yydp.db.pojo.FilmInfo;
+import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.ResultMap;
+import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
+import org.lf.yydp.db.pojo.FilmInfo;
+import org.springframework.stereotype.Repository;
+@Repository
 public interface FilmInfoMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -14,4 +21,16 @@ public interface FilmInfoMapper {
     int updateByPrimaryKeySelective(FilmInfo record);
 
     int updateByPrimaryKey(FilmInfo record);
+    
+    @Select("select * from film_info")
+    @ResultMap("org.lf.yydp.db.dao.FilmInfoMapper.BaseResultMap")
+    List<FilmInfo> selectList();
+    
+    @Select("select * from film_info where bigimage is not null")
+    @ResultMap("org.lf.yydp.db.dao.FilmInfoMapper.BaseResultMap")
+    List<FilmInfo> selectBigHrefList();
+    
+    @Update("update film_info set picDownLoadStatus=1,localbigimage=#{localImgPath}  where f_id=#{id}")
+    void updateFilmInfoImg(@Param("id")Integer id, @Param("localImgPath")String localImgPath);
+    
 }

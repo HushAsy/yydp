@@ -14,10 +14,9 @@ public class FilmExtractor extends BaseExtractor{
 		extract();
 	}
 	
-	@SuppressWarnings("unchecked")
 	@Override
 	protected void extract() {
-		baseExt = new FilmExtract(parseFile);
+		FilmExtract baseExt = new FilmExtract(parseFile);
 		filmList = (List<Film>) baseExt.getListModel();
 	}
 

@@ -2,17 +2,15 @@ package org.lf.yydp.etl.extract.form;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import org.lf.yydp.db.pojo.Actor_Film;
 import org.lf.yydp.db.pojo.FilmInfo;
-
 import com.sun.tools.example.debug.expr.ParseException;
-
 public class FilmInfoExtract extends BaseExtract<FilmInfo>{
 	
 	private FilmInfo film_info;
@@ -39,7 +37,7 @@ public class FilmInfoExtract extends BaseExtract<FilmInfo>{
 		BufferedReader br = null;
 		String bath = null;
 		try {
-			br = new BufferedReader(new FileReader(this.parseFile));
+			br = new BufferedReader(new InputStreamReader(new FileInputStream(this.parseFile), "UTF-8"));
 			String line = null;
 			while ((line = br.readLine()) != null) {
 				bath += line;
@@ -70,11 +68,9 @@ public class FilmInfoExtract extends BaseExtract<FilmInfo>{
 					director=mD.group(1);
 					film_info.setfDirector(director);
 				}
-				
 				film_info.setfSummary(m.group(6));
 			}
 		
-
 		// 匹配类型
 		String type = "";
 		String regex1 = "pan=\"M14_Movie_Overview_MovieTypeAndRuntimeAndVersion\">(.*?)<a href=\"http://movie.mtime.com/\\d++/details.html#releasedate\" property=\"v:initialReleaseDate\" content=\"(.*?)\">.*?</a>(.*?)</div>";
@@ -131,10 +127,6 @@ public class FilmInfoExtract extends BaseExtract<FilmInfo>{
 			}
 		}
      film_info.setfActor(fa.replace("null", ""));
-//     filmInfoMapper.insert(film_info);
-//		for (int i = 0; i <actor_Films.size(); i++) {
-//			actor_FilmMapper.insertSelective(actor_Films.get(i));
-//		}
 	}
 
 	public FilmInfo getFilm_info() {

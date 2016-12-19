@@ -27,14 +27,14 @@ public interface FilmMapper {
     @ResultMap("org.lf.yydp.db.dao.FilmMapper.BaseResultMap")
     List<Film> selectAllFilm();
     
-    @Select("select href  from film")
+    @Select("select href  from film where href is not null")
     List<String> selectAllFilmHref();
     
-    @Update("update film set picdownloadstatus=1,localimgpath=#{localImgPath} where img = #{img}")
-    void updateFilmByimg(@Param("img")String img, @Param("localImgPath")String localImgPath);
+    @Update("update film set picdownloadstatus=1,localimgpath=#{localImgPath} where id=#{id}")
+    void updateFilmByimg(@Param("id")Integer id, @Param("localImgPath")String localImgPath);
     
-    @Select("select img from film where picdownloadstatus = 0")
-    List<String> selectImgList();
+    @Select("select * from film;")
+    List<Film> selectImgList();
     
     
 }

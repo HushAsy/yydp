@@ -8,20 +8,32 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Properties;
 
 import org.apache.log4j.Logger;
-import org.lf.yydp.etl.extract.form.BaseExtract;
 
 /**
  * @author Administrator
  */
 public abstract class BaseExtractor {
+	private static Logger logger = Logger.getLogger(BaseExtractor.class);
 	private URL url;
-	private static File tmpFile = new File("temp");
-	protected File parseFile;
-	protected BaseExtract<?> baseExt;
-	private Logger logger = Logger.getLogger(BaseExtractor.class);
+	private static File tmpFile;
+	static{
+		String fileDir = null;
+		InputStream inputStream = BaseExtractor.class.getClassLoader()
+				.getResourceAsStream("File.properties");
+		Properties p = new Properties();
+		try {
+			p.load(inputStream);
+			fileDir = p.getProperty("fileDir");
+		} catch (IOException e1) {
+			logger.error("配置文件读取出错", e1);
+		}
+		tmpFile = new File(fileDir);
+	}
 	
+	protected File parseFile;
 	public BaseExtractor(){
 	}
 	
@@ -38,11 +50,7 @@ public abstract class BaseExtractor {
 			logger.info(url+" error!");
 		}
 		parseFile = new File(tmpFile, new File(this.url.getFile()).getName());
-		if(parseFile.exists()){
-			logger.info(parseFile.getAbsoluteFile()+" is extist!");
-		}else{
-			downLoad(this.url);
-		}
+		downLoad(this.url);
 	}
 	
 	@SuppressWarnings("static-access")

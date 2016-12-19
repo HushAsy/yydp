@@ -4,15 +4,17 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 import org.apache.log4j.Logger;
 import org.lf.yydp.db.pojo.Film;
+
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 
@@ -45,7 +47,11 @@ public class FilmExtract extends BaseExtract<Film>{
 		String pattern1 = "img\\ssrc=.*?\"?(\\bhttp\\b.*?)\".*?alt.*?\"(.*?)\"";
 		Pattern p = Pattern.compile(pattern1);
 		try {
-			br = new BufferedReader(new FileReader(this.parseFile));
+			try {
+				br = new BufferedReader(new InputStreamReader(new FileInputStream(this.parseFile), "UTF-8")); 
+			} catch (UnsupportedEncodingException e1) {
+				e1.printStackTrace();
+			}
 			try {
 				while((str=br.readLine()) != null){
 					Matcher mat = p.matcher(str);
@@ -86,7 +92,7 @@ public class FilmExtract extends BaseExtract<Film>{
 	private void matchFile(){
 		BufferedReader br;
 		try {
-			br = new BufferedReader(new InputStreamReader(new FileInputStream(parseFile)));
+			br = new BufferedReader(new InputStreamReader(new FileInputStream(parseFile),"UTF-8"));
 			try {
 				String str = null;
 				while( (str = br.readLine()) != null){
@@ -104,6 +110,8 @@ public class FilmExtract extends BaseExtract<Film>{
 			}
 		} catch (FileNotFoundException e) {
 			logger.error(parseFile.getAbsolutePath() + " extract error!");
+		} catch (UnsupportedEncodingException e1) {
+			e1.printStackTrace();
 		}
 	}
 	

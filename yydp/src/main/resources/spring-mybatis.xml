@@ -90,6 +90,18 @@
     </bean>
     
     <!-- 事务注解驱动，标注@Transactional(rollbackFor=Exception.class)的类和方法将具有事务性 -->  
-	<tx:annotation-driven transaction-manager="transactionManager" /> 
-  
+	<tx:annotation-driven transaction-manager="transactionManager" />
+	
+<!-- 	<bean id="taskExecutor" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">                -->
+                   <!-- 线程池活跃的线程数 -->   
+<!-- 		<property name="corePoolSize" value="5" />  -->
+                    <!-- 线程池最大活跃的线程数 -->  
+<!-- 		<property name="maxPoolSize" value="10" />  -->
+                    <!-- 队列的最大容量 -->  
+<!-- 		<property name="queueCapacity" value="25" /> -->
+<!-- 	</bean> -->
+<!-- 	<bean id="taskExecutorExample" class="org.lf.yydp.etl.ImgDownLoad">  -->
+<!-- 		<constructor-arg ref="taskExecutor" /> -->
+<!-- 	</bean> -->
+	
 </beans>  
