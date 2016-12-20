@@ -1,8 +1,7 @@
 package org.lf.yydp.db.dao;
 
 import org.lf.yydp.db.pojo.Schedule;
-import org.springframework.stereotype.Repository;
-@Repository
+
 public interface ScheduleMapper {
     int deleteByPrimaryKey(Integer id);
 

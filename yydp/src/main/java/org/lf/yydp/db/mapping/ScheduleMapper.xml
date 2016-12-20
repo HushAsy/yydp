@@ -9,9 +9,10 @@
     <result column="play_time" jdbcType="TIME" property="playTime" />
     <result column="status" jdbcType="CHAR" property="status" />
     <result column="isStart" jdbcType="CHAR" property="isstart" />
+    <result column="ph_id" jdbcType="INTEGER" property="phId" />
   </resultMap>
   <sql id="Base_Column_List">
-    Id, f_id, sche_time, money, play_time, status, isStart
+    Id, f_id, sche_time, money, play_time, status, isStart, ph_id
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -26,10 +27,10 @@
   <insert id="insert" parameterType="org.lf.yydp.db.pojo.Schedule">
     insert into schedule (Id, f_id, sche_time, 
       money, play_time, status, 
-      isStart)
+      isStart, ph_id)
     values (#{id,jdbcType=INTEGER}, #{fId,jdbcType=INTEGER}, #{scheTime,jdbcType=DATE}, 
       #{money,jdbcType=DECIMAL}, #{playTime,jdbcType=TIME}, #{status,jdbcType=CHAR}, 
-      #{isstart,jdbcType=CHAR})
+      #{isstart,jdbcType=CHAR}, #{phId,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="org.lf.yydp.db.pojo.Schedule">
     insert into schedule
@@ -55,6 +56,9 @@
       <if test="isstart != null">
         isStart,
       </if>
+      <if test="phId != null">
+        ph_id,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -77,6 +81,9 @@
       </if>
       <if test="isstart != null">
         #{isstart,jdbcType=CHAR},
+      </if>
+      <if test="phId != null">
+        #{phId,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -101,6 +108,9 @@
       <if test="isstart != null">
         isStart = #{isstart,jdbcType=CHAR},
       </if>
+      <if test="phId != null">
+        ph_id = #{phId,jdbcType=INTEGER},
+      </if>
     </set>
     where Id = #{id,jdbcType=INTEGER}
   </update>
@@ -111,7 +121,8 @@
       money = #{money,jdbcType=DECIMAL},
       play_time = #{playTime,jdbcType=TIME},
       status = #{status,jdbcType=CHAR},
-      isStart = #{isstart,jdbcType=CHAR}
+      isStart = #{isstart,jdbcType=CHAR},
+      ph_id = #{phId,jdbcType=INTEGER}
     where Id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

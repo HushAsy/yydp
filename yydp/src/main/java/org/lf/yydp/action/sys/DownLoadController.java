@@ -1,4 +1,4 @@
-package org.lf.yydp.action;
+package org.lf.yydp.action.sys;
 
 import java.io.File;
 import java.net.MalformedURLException;

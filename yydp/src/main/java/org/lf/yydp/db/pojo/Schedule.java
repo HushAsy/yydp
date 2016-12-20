@@ -17,6 +17,8 @@ public class Schedule {
 
     private String isstart;
 
+    private Integer phId;
+
     public Integer getId() {
         return id;
     }
@@ -71,5 +73,13 @@ public class Schedule {
 
     public void setIsstart(String isstart) {
         this.isstart = isstart == null ? null : isstart.trim();
+    }
+
+    public Integer getPhId() {
+        return phId;
+    }
+
+    public void setPhId(Integer phId) {
+        this.phId = phId;
     }
 }
