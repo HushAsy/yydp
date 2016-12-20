@@ -74,7 +74,6 @@ public class ImgDownLoad {
 			dowmLoad();
 		}
 		
-		@SuppressWarnings("static-access")
 		public void dowmLoad(){
 			HttpURLConnection conn = null;
 			try {

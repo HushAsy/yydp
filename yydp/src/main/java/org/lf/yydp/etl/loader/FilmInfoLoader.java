@@ -47,10 +47,14 @@ public class FilmInfoLoader extends BaseLoader{
 		try {
 			FilmInfoExtrator baseExt = new FilmInfoExtrator(url);
 			filmInfo = baseExt.getFilmInfo();
-			film_intoDao.insert(filmInfo);
+			if(film_intoDao.selectFilm_infoByF_id(filmInfo.getfId()) == null){
+				film_intoDao.insert(filmInfo);
+			}
 			listAc = baseExt.getListActors();
 			for(Actor_Film actor: listAc){
-				actorDao.insert(actor);
+				if(actorDao.selectActorFilmByActorNameAndFid(actor.getActorname(), actor.getfId()) == null){
+					actorDao.insert(actor);
+				}
 			}
 		} catch (IOException e) {
 			logger.error("error", e);

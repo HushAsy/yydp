@@ -33,4 +33,8 @@ public interface Actor_FilmMapper {
     @Select("select * from actor_film")
     @ResultMap("org.lf.yydp.db.dao.Actor_FilmMapper.BaseResultMap")
     List<Actor_Film> selectActorList();
+    
+    @Select("select * from actor_film where actorName=#{actorName} and f_id=#{f_id}")
+    @ResultMap("org.lf.yydp.db.dao.Actor_FilmMapper.BaseResultMap")
+    Actor_Film selectActorFilmByActorNameAndFid(@Param("actorName")String actorName, @Param("f_id")Integer fid);
 }

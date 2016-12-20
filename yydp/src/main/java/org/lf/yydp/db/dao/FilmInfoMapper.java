@@ -26,6 +26,10 @@ public interface FilmInfoMapper {
     @ResultMap("org.lf.yydp.db.dao.FilmInfoMapper.BaseResultMap")
     List<FilmInfo> selectList();
     
+    @Select("select * from film_info where f_id=#{fid}")
+    @ResultMap("org.lf.yydp.db.dao.FilmInfoMapper.BaseResultMap")
+    FilmInfo selectFilm_infoByF_id(Integer fid);
+    
     @Select("select * from film_info where bigimage is not null")
     @ResultMap("org.lf.yydp.db.dao.FilmInfoMapper.BaseResultMap")
     List<FilmInfo> selectBigHrefList();
