@@ -4,14 +4,14 @@
   <resultMap id="BaseResultMap" type="org.lf.yydp.db.pojo.Schedule">
     <id column="Id" jdbcType="INTEGER" property="id" />
     <result column="f_id" jdbcType="INTEGER" property="fId" />
-    <result column="sche_time" jdbcType="TIMESTAMP" property="scheTime" />
+    <result column="sche_time" jdbcType="DATE" property="scheTime" />
     <result column="money" jdbcType="DECIMAL" property="money" />
-    <result column="day" jdbcType="CHAR" property="day" />
+    <result column="play_time" jdbcType="TIME" property="playTime" />
     <result column="status" jdbcType="CHAR" property="status" />
     <result column="isStart" jdbcType="CHAR" property="isstart" />
   </resultMap>
   <sql id="Base_Column_List">
-    Id, f_id, sche_time, money, day, status, isStart
+    Id, f_id, sche_time, money, play_time, status, isStart
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -25,11 +25,11 @@
   </delete>
   <insert id="insert" parameterType="org.lf.yydp.db.pojo.Schedule">
     insert into schedule (Id, f_id, sche_time, 
-      money, day, status, isStart
-      )
-    values (#{id,jdbcType=INTEGER}, #{fId,jdbcType=INTEGER}, #{scheTime,jdbcType=TIMESTAMP}, 
-      #{money,jdbcType=DECIMAL}, #{day,jdbcType=CHAR}, #{status,jdbcType=CHAR}, #{isstart,jdbcType=CHAR}
-      )
+      money, play_time, status, 
+      isStart)
+    values (#{id,jdbcType=INTEGER}, #{fId,jdbcType=INTEGER}, #{scheTime,jdbcType=DATE}, 
+      #{money,jdbcType=DECIMAL}, #{playTime,jdbcType=TIME}, #{status,jdbcType=CHAR}, 
+      #{isstart,jdbcType=CHAR})
   </insert>
   <insert id="insertSelective" parameterType="org.lf.yydp.db.pojo.Schedule">
     insert into schedule
@@ -46,8 +46,8 @@
       <if test="money != null">
         money,
       </if>
-      <if test="day != null">
-        day,
+      <if test="playTime != null">
+        play_time,
       </if>
       <if test="status != null">
         status,
@@ -64,13 +64,13 @@
         #{fId,jdbcType=INTEGER},
       </if>
       <if test="scheTime != null">
-        #{scheTime,jdbcType=TIMESTAMP},
+        #{scheTime,jdbcType=DATE},
       </if>
       <if test="money != null">
         #{money,jdbcType=DECIMAL},
       </if>
-      <if test="day != null">
-        #{day,jdbcType=CHAR},
+      <if test="playTime != null">
+        #{playTime,jdbcType=TIME},
       </if>
       <if test="status != null">
         #{status,jdbcType=CHAR},
@@ -87,13 +87,13 @@
         f_id = #{fId,jdbcType=INTEGER},
       </if>
       <if test="scheTime != null">
-        sche_time = #{scheTime,jdbcType=TIMESTAMP},
+        sche_time = #{scheTime,jdbcType=DATE},
       </if>
       <if test="money != null">
         money = #{money,jdbcType=DECIMAL},
       </if>
-      <if test="day != null">
-        day = #{day,jdbcType=CHAR},
+      <if test="playTime != null">
+        play_time = #{playTime,jdbcType=TIME},
       </if>
       <if test="status != null">
         status = #{status,jdbcType=CHAR},
@@ -107,9 +107,9 @@
   <update id="updateByPrimaryKey" parameterType="org.lf.yydp.db.pojo.Schedule">
     update schedule
     set f_id = #{fId,jdbcType=INTEGER},
-      sche_time = #{scheTime,jdbcType=TIMESTAMP},
+      sche_time = #{scheTime,jdbcType=DATE},
       money = #{money,jdbcType=DECIMAL},
-      day = #{day,jdbcType=CHAR},
+      play_time = #{playTime,jdbcType=TIME},
       status = #{status,jdbcType=CHAR},
       isStart = #{isstart,jdbcType=CHAR}
     where Id = #{id,jdbcType=INTEGER}

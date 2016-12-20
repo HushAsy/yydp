@@ -1,7 +1,8 @@
 package org.lf.yydp.db.dao;
 
 import org.lf.yydp.db.pojo.Seats;
-
+import org.springframework.stereotype.Repository;
+@Repository
 public interface SeatsMapper {
     int deleteByPrimaryKey(Integer id);
 

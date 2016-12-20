@@ -22,6 +22,14 @@ public interface FilmInfoMapper {
 
     int updateByPrimaryKey(FilmInfo record);
     
+    /**
+     * 查询日期不为空的电影信息
+     * @return
+     */
+    @Select("select * from film_info where f_duration is not null;")
+    @ResultMap("org.lf.yydp.db.dao.FilmInfoMapper.BaseResultMap")
+    List<FilmInfo> selectDurationIsNotNull();
+    
     @Select("select * from film_info")
     @ResultMap("org.lf.yydp.db.dao.FilmInfoMapper.BaseResultMap")
     List<FilmInfo> selectList();

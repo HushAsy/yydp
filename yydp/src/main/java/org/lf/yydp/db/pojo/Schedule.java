@@ -1,6 +1,5 @@
 package org.lf.yydp.db.pojo;
 
-import java.math.BigDecimal;
 import java.util.Date;
 
 public class Schedule {
@@ -10,9 +9,9 @@ public class Schedule {
 
     private Date scheTime;
 
-    private BigDecimal money;
+    private Double money;
 
-    private String day;
+    private Date playTime;
 
     private String status;
 
@@ -42,20 +41,20 @@ public class Schedule {
         this.scheTime = scheTime;
     }
 
-    public BigDecimal getMoney() {
+    public Double getMoney() {
         return money;
     }
 
-    public void setMoney(BigDecimal money) {
+    public void setMoney(Double money) {
         this.money = money;
     }
 
-    public String getDay() {
-        return day;
+    public Date getPlayTime() {
+        return playTime;
     }
 
-    public void setDay(String day) {
-        this.day = day == null ? null : day.trim();
+    public void setPlayTime(Date playTime) {
+        this.playTime = playTime;
     }
 
     public String getStatus() {
