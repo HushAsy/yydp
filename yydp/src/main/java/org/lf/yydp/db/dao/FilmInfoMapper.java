@@ -30,6 +30,10 @@ public interface FilmInfoMapper {
     @ResultMap("org.lf.yydp.db.dao.FilmInfoMapper.BaseResultMap")
     List<FilmInfo> selectDurationIsNotNull();
     
+    /**
+     * 查询所有电影信息
+     * @return
+     */
     @Select("select * from film_info")
     @ResultMap("org.lf.yydp.db.dao.FilmInfoMapper.BaseResultMap")
     List<FilmInfo> selectList();

@@ -13,6 +13,7 @@ import java.util.Properties;
 import org.apache.log4j.Logger;
 
 /**
+ * 根据传进来的url需要解析的文件
  * @author Administrator
  */
 public abstract class BaseExtractor {
@@ -33,7 +34,7 @@ public abstract class BaseExtractor {
 		tmpFile = new File(fileDir);
 	}
 	
-	protected File parseFile;
+	protected File parseFile;//解析获得的文件
 	public BaseExtractor(){
 	}
 	
@@ -107,6 +108,9 @@ public abstract class BaseExtractor {
 		return bos.toByteArray();
 	}
 	
+	/**
+	 * 对文件进行解析
+	 */
 	protected abstract void extract();
 	
 }

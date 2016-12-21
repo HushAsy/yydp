@@ -40,7 +40,7 @@ public class DownLoadService {
 	private ImgDownLoad DownService;
 	
 	/**
-	 * 文件下载
+	 * 文件(解析)下载
 	 */
 	public boolean downFilmFile(String url){
 		if(filmLoaderService.load(url) == true){	
@@ -56,7 +56,13 @@ public class DownLoadService {
 		filmInfoService.load(null);
 	}
 	
-	
+	/**
+	 * 电影图片下载
+	 * @param filmPath
+	 * @param filmInfoPath
+	 * @param actorPath
+	 * @throws MalformedURLException
+	 */
 	public void downImg(String filmPath, String filmInfoPath, String actorPath) throws MalformedURLException{
 		downFilmImg(filmPath);
 		downFilmInfoImg(filmInfoPath);
@@ -67,6 +73,10 @@ public class DownLoadService {
 		updateActor(actorPath);
 	}
 	
+	/**
+	 * film
+	 * @param path
+	 */
 	private void updateFilm(String path){
 		List<Film> listFilm = filmDao.selectAllFilm();
 		for(Film film : listFilm){
@@ -75,6 +85,10 @@ public class DownLoadService {
 		logger.info("film 更新成功");
 	}
 	
+	/**
+	 * film_info
+	 * @param path
+	 */
 	private void updateFilmInfo(String path){
 		List<FilmInfo> listFilm = filmInfoDao.selectList();
 		for(FilmInfo film : listFilm){
@@ -83,6 +97,10 @@ public class DownLoadService {
 		logger.info("filmInfo 更新成功");
 	}
 	
+	/**
+	 * 更新演员表:actor_film
+	 * @param path
+	 */
 	private void updateActor(String path){
 		List<Actor_Film> listFilm = actorDao.selectActorList();
 		for(Actor_Film film : listFilm){
@@ -92,33 +110,44 @@ public class DownLoadService {
 	}
 	
 	private String getPath(String absPath){
-		
 		String[] strN = absPath.split("\\\\");
 		String str = strN[strN.length-2]+File.separator+strN[strN.length-1];
 		return str;
 	}
 	
+	/**
+	 * 电影缩略图下载
+	 * @param filmPath
+	 * @throws MalformedURLException
+	 */
 	private void downFilmImg(String filmPath) throws MalformedURLException{
 		DownService.setListModel(getSmallImgHrefList());
 		DownService.setTmpDir(filmPath);
 		DownService.downLoad();
 	}
 	
+	/**
+	 * 电影大图下载
+	 * @param filmInfoPath
+	 * @throws MalformedURLException
+	 */
 	private void downFilmInfoImg(String filmInfoPath) throws MalformedURLException{
 		DownService.setTmpDir(filmInfoPath);
 		DownService.setListModel(getBigImgHrefList());
 		DownService.downLoad();
 	}
 	
+	/**
+	 * 演员图片下载
+	 * @param actorPath
+	 * @throws MalformedURLException
+	 */
 	private void downActorImg(String actorPath) throws MalformedURLException{
 		DownService.setTmpDir(actorPath);
 		DownService.setListModel(getActorImgHrefList());
 		DownService.downLoad();
 	}
-	/**
-	 * 图片下载
-	 * @return
-	 */
+
 	private List<DownLoadModel> getSmallImgHrefList(){
 		List<Film> filmList = filmDao.selectImgList();
 		List<DownLoadModel> listModel = new ArrayList<DownLoadModel>();

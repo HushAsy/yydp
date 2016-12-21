@@ -24,6 +24,9 @@ public class FilmLoader extends BaseLoader{
 	
 	private List<Film> filmList = null;
 	
+	/**
+	 * 电影网站首页下载，成功后返回true
+	 */
 	@Override
 	@Transactional(rollbackFor=Exception.class)
 	public boolean load(String url) {

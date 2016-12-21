@@ -13,13 +13,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-@RequestMapping("imgDownLoad")
+@RequestMapping("sys")
 public class DownLoadController {
 	Logger logger = Logger.getLogger(DownLoadController.class);
 	@Autowired
 	private DownLoadService downService;
 	
-	@RequestMapping("dodo.do")
+	@RequestMapping("downLoad.do")
 	@ResponseBody
 	public String isDownLoadSuccess(HttpServletRequest request) throws MalformedURLException{
 		String str = request.getSession().getServletContext().getRealPath("/")+"images"+File.separator;

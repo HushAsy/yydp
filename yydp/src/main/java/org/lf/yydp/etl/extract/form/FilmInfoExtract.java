@@ -1,6 +1,7 @@
 package org.lf.yydp.etl.extract.form;
 
 import java.io.BufferedReader;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
@@ -15,6 +16,10 @@ public class FilmInfoExtract extends BaseExtract<FilmInfo>{
 	
 	private FilmInfo film_info;
 	List<Actor_Film> actor_Films;
+	/**
+	 * 对电影信息文件进行解析
+	 * @param File parseFile
+	 */
 	public FilmInfoExtract(File parseFile) {
 		super(parseFile);
 	}

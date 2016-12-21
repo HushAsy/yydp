@@ -43,6 +43,11 @@ public class FilmInfoLoader extends BaseLoader{
 		return true;
 	}
 	
+	/**
+	 * 获得film_info的并插入到film_info表中
+	 * 获得actor_film的集合插入到actor_film表中
+	 * @param url
+	 */
 	private void loadfilmInfo(String url){
 		try {
 			FilmInfoExtrator baseExt = new FilmInfoExtrator(url);
