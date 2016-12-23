@@ -1,6 +1,5 @@
 package org.lf.yydp.db.pojo;
 
-import java.math.BigDecimal;
 import java.util.Date;
 
 public class Plan {

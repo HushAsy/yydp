@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
-import org.lf.yydp.Model.DownLoadModel;
 import org.lf.yydp.db.dao.Actor_FilmMapper;
 import org.lf.yydp.db.dao.FilmInfoMapper;
 import org.lf.yydp.db.dao.FilmMapper;
@@ -16,6 +15,7 @@ import org.lf.yydp.db.pojo.FilmInfo;
 import org.lf.yydp.etl.imgDownLoad.ImgDownLoad;
 import org.lf.yydp.etl.loader.FilmInfoLoader;
 import org.lf.yydp.etl.loader.FilmLoader;
+import org.lf.yydp.etl.model.DownLoadModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 @Service

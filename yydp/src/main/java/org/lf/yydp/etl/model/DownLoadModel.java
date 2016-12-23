@@ -1,4 +1,4 @@
-package org.lf.yydp.Model;
+package org.lf.yydp.etl.model;
 
 public class DownLoadModel {
 	private String url;

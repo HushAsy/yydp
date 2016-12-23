@@ -19,7 +19,6 @@ public class PlanService {
 	private static Calendar calen_flag_time;//设定一个flag日期，作为循环结束的标志
 	private static int p_id = 1;
 	private static boolean flag = false;//当flag为false，进行排期，为true时结束。
-	private static Date dateNow = new Date();
 	private static double money = 30.0;
 	
 	@Autowired
@@ -37,6 +36,7 @@ public class PlanService {
 	 */
 	@Transactional(rollbackFor=Exception.class)
 	public void insertScedule(){
+		System.out.println(calenPlay_time.toString()+"\n"+calen_flag_time.toString());
 		List<FilmInfo> listFilmInfo = filmInfoDao.selectDurationIsNotNull();
 		Integer duration = null;
 		while(flag == false){
@@ -58,12 +58,10 @@ public class PlanService {
 	static{
 		
 		calenPlay_time = Calendar.getInstance();
-		calenPlay_time.set(Calendar.HOUR_OF_DAY, 9);
-		calenPlay_time.set(Calendar.MINUTE, 0);
-		calenPlay_time.set(Calendar.SECOND, 0);
+		calenPlay_time.set(2017, 7, 1, 9, 0, 0);
 		
 		calen_flag_time = Calendar.getInstance();
-		calen_flag_time.set(dateNow.getYear(), dateNow.getMonth(), dateNow.getDay(), 0, 0, 0);
+		calen_flag_time.set(2017, 7, 1, 0, 0, 0);
 	}
 	
 	/**
@@ -73,7 +71,6 @@ public class PlanService {
 	 * @param duration
 	 */
 	private void insertDate(Integer fid, Integer duration){
-		System.out.println(calenPlay_time.toString());
 		if(new Date(calenPlay_time.getTimeInMillis()).getHours()>21 || new Date(calenPlay_time.getTimeInMillis()).getHours()<9){
 			if(p_id<10){
 				calenPlay_time.set(Calendar.HOUR_OF_DAY, 9);

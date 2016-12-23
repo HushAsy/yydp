@@ -3,80 +3,14 @@
 <mapper namespace="org.lf.yydp.db.dao.SeatsMapper">
   <resultMap id="BaseResultMap" type="org.lf.yydp.db.pojo.Seats">
     <id column="Id" jdbcType="INTEGER" property="id" />
-    <result column="sch_id" jdbcType="INTEGER" property="schId" />
     <result column="seat_id" jdbcType="INTEGER" property="seatId" />
-    <result column="status" jdbcType="CHAR" property="status" />
   </resultMap>
-  <sql id="Base_Column_List">
-    Id, sch_id, seat_id, status
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from seats
-    where Id = #{id,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from seats
-    where Id = #{id,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="org.lf.yydp.db.pojo.Seats">
-    insert into seats (Id, sch_id, seat_id, 
-      status)
-    values (#{id,jdbcType=INTEGER}, #{schId,jdbcType=INTEGER}, #{seatId,jdbcType=INTEGER}, 
-      #{status,jdbcType=CHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="org.lf.yydp.db.pojo.Seats">
-    insert into seats
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        Id,
-      </if>
-      <if test="schId != null">
-        sch_id,
-      </if>
-      <if test="seatId != null">
-        seat_id,
-      </if>
-      <if test="status != null">
-        status,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="schId != null">
-        #{schId,jdbcType=INTEGER},
-      </if>
-      <if test="seatId != null">
-        #{seatId,jdbcType=INTEGER},
-      </if>
-      <if test="status != null">
-        #{status,jdbcType=CHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="org.lf.yydp.db.pojo.Seats">
-    update seats
-    <set>
-      <if test="schId != null">
-        sch_id = #{schId,jdbcType=INTEGER},
-      </if>
-      <if test="seatId != null">
-        seat_id = #{seatId,jdbcType=INTEGER},
-      </if>
-      <if test="status != null">
-        status = #{status,jdbcType=CHAR},
-      </if>
-    </set>
-    where Id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="org.lf.yydp.db.pojo.Seats">
-    update seats
-    set sch_id = #{schId,jdbcType=INTEGER},
-      seat_id = #{seatId,jdbcType=INTEGER},
-      status = #{status,jdbcType=CHAR}
-    where Id = #{id,jdbcType=INTEGER}
-  </update>
+  <resultMap id="MovieInfoResultMap" type="org.lf.yydp.service.model.MovieInfo">
+    <result column="localImgPath" jdbcType="VARCHAR" property="localImgPath" />
+    <result column="f_name" jdbcType="VARCHAR" property="f_name" />
+    <result column="f_type" jdbcType="VARCHAR" property="f_type" />
+    <result column="f_country" jdbcType="VARCHAR" property="f_country" />
+    <result column="f_ontime" jdbcType="VARCHAR" property="f_ontime" />
+    <result column="money" jdbcType="NUMERIC" property="money" />
+  </resultMap>
 </mapper>

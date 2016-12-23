@@ -12,7 +12,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import org.apache.log4j.Logger;
-import org.lf.yydp.Model.DownLoadModel;
+import org.lf.yydp.etl.model.DownLoadModel;
 import org.springframework.stereotype.Service;
 @Service
 public class ImgDownLoad {
@@ -74,6 +74,7 @@ public class ImgDownLoad {
 			dowmLoad();
 		}
 		
+		@SuppressWarnings("static-access")
 		public void dowmLoad(){
 			HttpURLConnection conn = null;
 			try {

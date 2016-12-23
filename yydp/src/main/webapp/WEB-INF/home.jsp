@@ -12,6 +12,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<script type="text/javascript" src="${pageContext.servletContext.contextPath }/js/easyui/jquery.min.js"></script>
 	<script type="text/javascript" src="${pageContext.servletContext.contextPath }/js/easyui/jquery.easyui.min.js"></script>
 	<script type="text/javascript" src="${pageContext.servletContext.contextPath }/js/easyui/locale/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="${pageContext.servletContext.contextPath }/js/home.js"></script>
 	<meta charset="utf-8" />
 	<title>电影商城</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,6 +24,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			font-family: "Helvetica Neue";
 			font-size: 14px;
 			background-color: #FFFFFF;
+			margin: 0px;
+			padding: 0px;
 		}
 		
 		#nav_top{
@@ -83,5 +86,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			     						border:false,
 			     						href:'${pageContext.servletContext.contextPath}/home/center.do'"></div>
 	</div>
+	<script>
+	function filmInfoUI(target){
+		var f_id = target;
+		$('#center').panel({
+			href:getContextPath()+"/film/filmInfo.do",
+		});
+	}
+	</script>
 </body>
 </html>

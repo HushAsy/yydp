@@ -23,4 +23,9 @@ public class FilmInfoController {
 		return filmInfoService.getFilmInfoList();
 	}
 	
+	@RequestMapping("filmInfo.do")
+	public String getFilmInfo(){
+		return "jsp/filmInfo";
+	}
+	
 }

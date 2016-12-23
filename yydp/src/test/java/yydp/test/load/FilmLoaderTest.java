@@ -1,5 +1,8 @@
 package yydp.test.load;
 
+import java.util.Calendar;
+import java.util.Date;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.lf.yydp.db.dao.UserMapper;
@@ -17,7 +20,12 @@ public class FilmLoaderTest {
 	@Test
 	@Transactional(rollbackFor=Exception.class)
 	public void tt() throws Exception{
-		
+		Date dateNow = new Date();
+		System.out.println(dateNow.toLocaleString());
+		Calendar cal = Calendar.getInstance();
+		System.out.println(cal.YEAR );
+		cal.set(2016,12, 20, 9, 0, 0);
+		System.out.println(new Date(cal.getTimeInMillis()).toLocaleString());
 	} 
 
 }

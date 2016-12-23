@@ -190,7 +190,18 @@
             <groupId>commons-dbcp</groupId>  
             <artifactId>commons-dbcp</artifactId>  
             <version>1.4</version>  
-        </dependency>    
+        </dependency>  
+         <!-- java-mail.jar -->
+        <dependency>  
+            <groupId>com.mail</groupId>  
+            <artifactId>java-mail</artifactId>  
+            <version>201612202020</version>  
+        </dependency>
+        <dependency>  
+            <groupId>com.mail</groupId>  
+            <artifactId>activation</artifactId>  
+            <version>201612202020</version>  
+        </dependency>  
   </dependencies>
   <build>
     <plugins>
