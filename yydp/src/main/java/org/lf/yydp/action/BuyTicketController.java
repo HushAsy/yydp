@@ -3,6 +3,7 @@ package org.lf.yydp.action;
 import java.util.List;
 
 import org.lf.yydp.service.film.BuyTicketService;
+import org.lf.yydp.service.model.MovieInfo;
 import org.lf.yydp.service.model.TicketItemDataModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -32,6 +33,29 @@ public class BuyTicketController {
 	@ResponseBody
 	public List<TicketItemDataModel>  getModelList(Integer f_id){
 		return ticketService.getPlanList(f_id);
+	}
+	
+	@RequestMapping("getSeatsArray.do")
+	@ResponseBody
+	public Integer[] getSeatsArray (Integer plan_id) {
+		return ticketService.getSeatsArray(plan_id);//?
+	}
+	
+	@RequestMapping("getMovieInfo.do")
+	@ResponseBody
+	public MovieInfo getMovieInfo (Integer plan_id) {
+		return ticketService.getMovieInfo(plan_id);//?
+	}
+	
+	@RequestMapping("sentEmail.do")
+	@ResponseBody
+	public void sentEmail (String receiver) {
+		ticketService.sendEmail(receiver);
+	}
+	
+	@RequestMapping("onlinePayUI.do")
+	public String onlinePayUI () {
+		return "onlinePay";
 	}
 }
 

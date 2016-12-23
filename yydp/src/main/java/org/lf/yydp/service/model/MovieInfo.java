@@ -1,6 +1,10 @@
 package org.lf.yydp.service.model;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class MovieInfo {
+	private static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	
 	private String localImgPath;//图片URL
 	
@@ -13,6 +17,16 @@ public class MovieInfo {
 	private String f_ontime;
 	
 	private Double money;
+	
+	private Date play_time;
+	
+	private String playTime;
+	
+	private Integer number;
+	
+	private String f_duration;
+	
+	private Integer rest;
 
 	public String getLocalImgPath() {
 		return localImgPath;
@@ -61,5 +75,49 @@ public class MovieInfo {
 	public void setMoney(Double money) {
 		this.money = money;
 	}
+
+	public Date getPlay_time() {
+		return play_time;
+	}
+
+	public void setPlay_time(Date play_time) {
+		this.play_time = play_time;
+		this.playTime = convertDateToString(this.play_time);
+	}
+
+	public String getPlayTime() {
+		return playTime;
+	}
+
+	public void setPlayTime(String playTime) {
+		this.playTime = playTime;
+	}
+
+	public Integer getNumber() {
+		return number;
+	}
+
+	public void setNumber(Integer number) {
+		this.number = number;
+	}
+
+	public String getF_duration() {
+		return f_duration;
+	}
+
+	public void setF_duration(String f_duration) {
+		this.f_duration = f_duration;
+	}
 	
+	public Integer getRest() {
+		return rest;
+	}
+
+	public void setRest(Integer rest) {
+		this.rest = rest;
+	}
+
+	private String convertDateToString(Date date){
+		return sdf.format(date);
+	}
 }

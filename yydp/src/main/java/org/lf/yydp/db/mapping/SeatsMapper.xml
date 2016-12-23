@@ -10,7 +10,11 @@
     <result column="f_name" jdbcType="VARCHAR" property="f_name" />
     <result column="f_type" jdbcType="VARCHAR" property="f_type" />
     <result column="f_country" jdbcType="VARCHAR" property="f_country" />
+    <result column="f_duration" jdbcType="VARCHAR" property="f_duration" />
     <result column="f_ontime" jdbcType="VARCHAR" property="f_ontime" />
+    <result column="number" jdbcType="NUMERIC" property="number" />
+    <result column="play_time" jdbcType="TIMESTAMP" property="play_time"/>
     <result column="money" jdbcType="NUMERIC" property="money" />
+    <result column="rest" jdbcType="NUMERIC" property="rest" />
   </resultMap>
 </mapper>

@@ -108,10 +108,16 @@ public class BuyTicketService {
 		return convert(planDao.slectPlanByF_id(f_id));
 	}
 	
+	/**
+	 * SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); 表示24小时的
+	 * SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss"); 表示12小时的
+	 * @param planList
+	 * @return
+	 */
 	private List<TicketItemDataModel> convert(List<Plan> planList){
 		List<TicketItemDataModel> listModel = new ArrayList<TicketItemDataModel>();
 		TicketItemDataModel model = null;
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		for(Plan plan : planList){
 			model = new TicketItemDataModel();
 			model.setPlay_time(sdf.format(plan.getPlayTime()));

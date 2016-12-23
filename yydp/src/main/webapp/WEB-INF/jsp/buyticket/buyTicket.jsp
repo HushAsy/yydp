@@ -247,6 +247,7 @@ body {
 	font-size: 14px;
 	font-weight: lighter;
 	font-family: "宋体";
+	padding-left: 10px;
 }
 #mainBody #middle #main #main_right #main_right_middle #film_Detail #film_price {
 	height: 168px;
@@ -428,8 +429,8 @@ body {
 				<div id="main_left">
 				  <div id="logo_main">
 						<div id="logo"></div>
-						<div id="subtitle">保利国际影城深圳大中华店 1号厅</div><!-- 具体数据具体再弄 -->
-						<div id="person_count">（剩余103个座位）</div><!--  -->
+						<div id="subtitle">世纪影城(No.厅)</div><!-- 具体数据具体再弄 -->
+						<div id="person_count"></div><!--  -->
 				  </div>
 					<div id="seat_rowName"></div>
 					<div id="table_seat"></div><!-- 要用动态的座位表 -->
@@ -448,12 +449,12 @@ body {
 							</div>
 							<div id="film_price">
 								<div id="film_yy_name">影院:</div>
-								<div id="film_yy">中影国际影城深证福田深国投店</div><!-- 从数据库读取 -->
+								<div id="film_yy">世纪影城</div><!-- 从数据库读取 -->
 								<div id="film_bb_name">版本:</div>
 								<div id="film_bb">2D英文版</div><!-- 从数据库读取 -->
-								<div id="film_cc_name">场次:</div>
+								<div id="film_cc_name">上映:</div>
 								<div id="film_cc">xx月xx日 19：30</div><!-- 从数据库读取 -->
-								<div id="film_zw_name">座位:</div>
+								<div id="film_zw_name">放映:</div>
 								<div id="film_zw"></div><!-- 从数据库读取 -->
 								<div id="film_pj_name">票价:</div>
 								<div id="film_pj"></div><!-- 从数据库读取 -->
@@ -489,8 +490,11 @@ body {
 	var ontime = "";
 	var pay = 0;
 	var pay_show="";
+	var playTime = "";
+	var subtitle = "";
+	var person_count = "";
 	$.ajax({
-		url: getContextPath()+ "/home/getMovieInfo.do",
+		url: getContextPath()+ "/buy/getMovieInfo.do",
 		data:{"plan_id":'${plan.id}'},
 		dataType: "json",
 		async: false,
@@ -502,17 +506,23 @@ body {
 			ontime = result.f_ontime;
 			pay = result.money;
 			pay_show = result.money+"元/张";
+			playTime = result.playTime;
+			subtitle = result.number;
+			person_count = result.rest;
 		},
 		error: function () {
 			alert("error");
 		}
 	});	
 	$("#file_cover").css("background-image","url("+imgUrl+")");
-	$("#film_detail_title")[0].innerHTML = name;
-	$("#film_detail_type")[0].innerHTML = "类型:"+type;
+	$("#film_detail_title")[0].innerHTML = '<h5>'+name+'</h5>';
+	$("#film_detail_type")[0].innerHTML = '<h6>类型:'+type+'</h6>';
 	$("#film_bb")[0].innerHTML = version;
 	$("#film_cc")[0].innerHTML = ontime;
 	$("#film_pj")[0].innerHTML = pay_show;
+	$("#film_zw")[0].innerHTML = playTime;
+	$("#subtitle")[0].innerHTML = '世纪影城(No.'+subtitle+'厅)';
+	$("#person_count")[0].innerHTML = '(剩余'+person_count+'个座位)';
 	var seatData = getSeatData();
 	for(var i=0;i<seatData.length;i++) {
 		if ((i+1)%10 != 0) {
@@ -529,7 +539,7 @@ body {
 	function getSeatData () {
 		var seatData = "";
 		$.ajax({
-			url: getContextPath()+ "/home/getSeatsArray.do",
+			url: getContextPath()+ "/buy/getSeatsArray.do",
 			data:{"plan_id":'${plan.id}'},
 			dataType: "json",
 			async: false,
@@ -585,7 +595,7 @@ body {
 		var dlgpayTicketdiv = $("<div id='dlgpayTicketdiv'></div>");
 		dlgpayTicketdiv.appendTo("body");
 		$("#dlgpayTicketdiv").dialog({
-			href: getContextPath() + "/home/onlinePayUI.do",
+			href: getContextPath() + "/buy/onlinePayUI.do",
 			left: 400,
 			top:200,
 			width: 512,
