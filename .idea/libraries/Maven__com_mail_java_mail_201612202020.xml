@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.mail:java-mail:201612202020">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/mail/java-mail/201612202020/java-mail-201612202020.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/com/mail/java-mail/201612202020/java-mail-201612202020-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/mail/java-mail/201612202020/java-mail-201612202020-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

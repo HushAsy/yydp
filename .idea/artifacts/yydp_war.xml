@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="yydp:war">
+    <output-path>$PROJECT_DIR$/yydp/target</output-path>
+    <root id="archive" name="yydp-0.0.1-SNAPSHOT.war">
+      <element id="artifact" artifact-name="yydp:war exploded" />
+    </root>
+  </artifact>
+</component>
